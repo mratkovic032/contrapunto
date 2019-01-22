@@ -1,0 +1,39 @@
+{% extends "_global/index.html" %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div class="row category-banner-holder justify-content-center">
+        <img class="img" src="{{ BASE }}assets/img/category-banners/{{ products|first.category_id }}.jpg" aria-label="Banner">
+        <p class="banner-title">{{ products|first.category }}</p>
+    </div>
+    
+    <div class="row products-holder">    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="list-group">
+                        {% for category in categories %}
+                            <a href="{{ BASE }}category/{{ category.category_id }}" class="list-group-item list-group-item-action {% if category.is_active == 1 %} active {% endif %}">{{ category.name }}</a>
+                        {% endfor %}                
+                    </div>            
+                </div>
+        
+                <div class="col-lg-9">
+                    <div class="contaienr">
+                        <div class="row">
+                            {% for product in products %}
+                                <div class="col-lg-3 col-6 product-holder">
+                                    <img src="{{ BASE }}assets/img/product/{{ product.img_path }}" alt="Slika - {{ product.name }}">
+                                    <p>{{ product.name }}</p>
+                                </div>
+                            {% endfor %}                        
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
